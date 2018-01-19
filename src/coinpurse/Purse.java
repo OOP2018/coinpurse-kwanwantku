@@ -106,7 +106,6 @@ public class Purse {
 	 *    or null if cannot withdraw requested amount.
      */
     public Coin[] withdraw( double amount ) {
-        //TODO don't allow to withdraw amount < 0
         
 	   /*
 		* See lab sheet for outline of a solution, 
@@ -123,25 +122,38 @@ public class Purse {
 		* from the money list, and return the temporary
 		* list (as an array).
 		*/
+    	
     	if(this.getBalance() < amount) {
     		return null;
     	}
     	
     	List<Coin> templist = new ArrayList<Coin>();
     	Collections.sort(money);
-
+    	Collections.reverse(money);
     	int i =0;
-    	
-    	
 		
 		// Did we get the full amount?
 		// This code assumes you decrease amount each time you remove a coin.
     	// Your code might use some other variable for the remaining amount to withdraw.
-		if ( amountNeededToWithdraw != 0 )
-		{	
-			// failed. Don't change the contents of the purse.
-			
-		}
+    	while(amount >0) {
+        	
+    		if(i<money.size()) {
+    			if(money.get(i).getValue() <= amount) {
+    				amount -= money.get(i).getValue();
+    				templist.add(money.get(i));
+    				money.remove(i);
+    			}
+    			else 
+    				i++;
+    		}
+    		
+    		else {
+    			break;
+    		}
+    	}
+    	
+    	if(amount>0) 
+    		return null;
 
 		// Success.
 		// Remove the coins you want to withdraw from purse,
@@ -158,9 +170,7 @@ public class Purse {
      * It can return whatever is a useful description.
      */
     public String toString() {
-        //TODO complete this
-    	return "you forgot to write Purse.toString()";
+    	return this.getCapacity()+" coins with value" + this.getBalance();
     }
 
 }
-//TODO When you finish, there should not be any TODO comments, including this one!
