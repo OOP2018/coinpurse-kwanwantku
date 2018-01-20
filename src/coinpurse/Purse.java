@@ -89,7 +89,7 @@ public class Purse {
      */
     public boolean insert( Coin coin ) {
         // if the purse is already full then can't insert anything.
-    	if(!isFull() || coin.getValue() > 0) {
+    	if(!isFull() && coin.getValue() > 0) {
     		money.add(coin);
     		return true;
     	}
@@ -123,34 +123,30 @@ public class Purse {
 		* list (as an array).
 		*/
     	
-    	if(this.getBalance() < amount) {
+    	if(this.getBalance() < amount) 
     		return null;
-    	}
     	
     	List<Coin> templist = new ArrayList<Coin>();
     	Collections.sort(money);
-    	Collections.reverse(money);
-    	int i =0;
+		Collections.reverse(money);
+		int i = 0;
 		
 		// Did we get the full amount?
 		// This code assumes you decrease amount each time you remove a coin.
     	// Your code might use some other variable for the remaining amount to withdraw.
-    	while(amount >0) {
-        	
-    		if(i<money.size()) {
-    			if(money.get(i).getValue() <= amount) {
-    				amount -= money.get(i).getValue();
+		while(amount>0) {
+			if(i<money.size()) {
+				if(money.get(i).getValue() <= amount) {
+					amount -= money.get(i).getValue();
     				templist.add(money.get(i));
     				money.remove(i);
-    			}
-    			else 
-    				i++;
-    		}
-    		
-    		else {
-    			break;
-    		}
-    	}
+				}
+				else
+					i++;
+			}
+			else
+				break;
+		}
     	
     	if(amount>0) 
     		return null;
