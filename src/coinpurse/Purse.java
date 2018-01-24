@@ -18,8 +18,6 @@ import java.util.List;
  */
 public class Purse {
     /** Collection of objects in the purse. */
-	
-    /** Money is the number of coins in the purse*/
 	private List<Coin> money;
     
     /** Capacity is maximum number of items the purse can hold.
@@ -165,6 +163,7 @@ public class Purse {
      * toString returns a string description of the purse contents.
      * It can return whatever is a useful description.
      */
+    @Override
     public String toString() {
     	return this.getCapacity()+" coins with value" + this.getBalance();
     }

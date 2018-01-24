@@ -74,10 +74,10 @@ public class Coin implements Comparable<Coin>{
 	 * The detail of each coin
 	 * @return detail of each coin
 	 */
-	public String toStirng() {
+	@Override
+	public String toString() {
 		return this.value+ "-" + this.currency;
+		
 	}
-
-	
 
 }
