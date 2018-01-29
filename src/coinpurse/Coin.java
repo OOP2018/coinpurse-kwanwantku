@@ -7,7 +7,7 @@ package coinpurse;
  * @version 1.0
  * @since 19.01.2018
  */
-public class Coin implements Comparable<Coin>{
+public class Coin implements Comparable<Coin>,Valuable{
 	/**a value of the coin*/
 	private double value;
 	/**a currency of the coin*/
@@ -45,6 +45,7 @@ public class Coin implements Comparable<Coin>{
 	 * @return true if same currency and same value
 	 * 		   false if not same currency and not same value;
 	 */
+	@Override
 	public boolean equals(Object arg) {
 		if(arg == null) 
 			return false;
