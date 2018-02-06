@@ -2,6 +2,7 @@ package coinpurse;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -17,6 +18,7 @@ import java.util.List;
  *  @since 19.01.2017
  */
 public class Purse {
+
     /** Collection of objects in the purse. */
 	private List<Valuable> money;
     
@@ -24,6 +26,9 @@ public class Purse {
      *  Capacity is set when the purse is created and cannot be changed.
      */
     private final int capacity;
+    
+    /**The comparator for moneys**/
+    private final Comparator<Valuable> compare = new ValueComparator();
     
     /** 
      *  Create a purse with a specified capacity.
@@ -125,7 +130,7 @@ public class Purse {
     		return null;
     	
     	List<Valuable> templist = new ArrayList<Valuable>();
-    	Collections.sort(money,new ValueComparator());
+    	Collections.sort(money,compare);
 		Collections.reverse(money);
 		int i = 0;
 		
@@ -162,6 +167,7 @@ public class Purse {
     /** 
      * toString returns a string description of the purse contents.
      * It can return whatever is a useful description.
+     * @return the capacity and the balance of money for purse.
      */
     @Override
     public String toString() {

@@ -14,9 +14,10 @@ public class Coin implements Comparable<Coin>,Valuable{
 	private String currency;
 	
 	/**
-	 * Characteristics of coin.
+	 * Initialize a new coin.
+	 * Coin have value and currency.
 	 * @param value is value of each coin.
-	 * 		  currency is type of coin reference from each country.
+	 * @param currency is type of coin reference from each country.
 	 */
 	public Coin(double value, String currency) {
 		this.value = value;

@@ -1,5 +1,13 @@
 package coinpurse;
 
+/**
+ * Banknote has a value and a currency.
+ * Banknote has serial number for each banknote.
+ * Banknote can compare to others banknote.
+ * @author Kwanwan Tantichartkul
+ * @version 1.1
+ * @since 6.02.2018
+ */
 public class BankNote implements Valuable{
 	/**a value of the banknote*/
 	private double value;
@@ -11,9 +19,11 @@ public class BankNote implements Valuable{
 	private static long nextSerialNumber = 1000000;
 	
 	/**
-	 * Characteristics of banknote.
+	 * Initialize a new banknote.
+	 * Banknote have value and currency.
+	 * It also has serial number for each banknote.
 	 * @param value is value of each banknote.
-	 * 		  currency is type of banknote reference from each country.
+	 * @param currency is type of banknote reference from each country.
 	 */
 	public BankNote(double value, String currency) {
 		this.value = value;

@@ -14,51 +14,50 @@ public class MoneyUtil {
 	
 	/*Test coin and purse */
 	public static void main(String [] args) {
-		List<Coin> coins = new ArrayList<Coin>();
+		List<Valuable> values = new ArrayList<Valuable>();
 		Coin coin = new Coin(5,"Baht");
 		Coin coin2 = new Coin(10,"Baht");
 		Coin coin3 = new Coin(1, "Baht");
-		coins.add(coin);
-		coins.add(coin2);
-		coins.add(coin3);
-		coins.add(new Coin(5, "Rupee"));
-		printCoins(coins);
-		sortCoins(coins);
-		printCoins(coins);
-		filterByCurrency(coins,"Rupee");
-		printCoins(coins);
+		values.add(coin);
+		values.add(coin2);
+		values.add(coin3);
+		values.add(new Coin(5, "Rupee"));
+		printCoins(values);
+		sortCoins(values);
+		printCoins(values);
+		printCoins(filterByCurrency(values,"Rupee"));
 		
 	}
 	/**
 	 * This method is filter money by currency.
-	 * @param coins are list of coin to compare with currency.
+	 * @param moneys are list of money to compare with currency.
 	 * @param currency that you want to filter.
 	 * @return list of money in the currency that you want.
 	 */
-	public static List<Coin> filterByCurrency(List<Coin> coins,String currency) {
-		List<Coin> tempcoin = new ArrayList<Coin>();
-		for(Coin coin:coins) {
-			if(coin.getCurrency() == currency) {
-				tempcoin.add(coin);
+	public static List<Valuable> filterByCurrency(List<Valuable> valuables,String currency) {
+		List<Valuable> tempvaluable = new ArrayList<Valuable>();
+		for(Valuable valuable : valuables) {
+			if(valuable.getCurrency() == currency) {
+				tempvaluable.add(valuable);
 			}
 		}
-		return tempcoin;
+		return tempvaluable;
 	}
 	
 	/**
-	 * This method is sort coins in list.
-	 * @param coins are list of coins.
+	 * This method is sort moneys in list.
+	 * @param moneys are list of moneys.
 	 */
-	public static void sortCoins(List<Coin> coins) {
-		Collections.sort(coins);
+	public static void sortCoins(List<Valuable> valuables) {
+		Collections.sort(valuables, new ValueComparator());
 	}
 	
 	/**
-	 * Print list of coins.
-	 * @param coins are list of coins.
+	 * Print list of moneys.
+	 * @param coins are list of moneys.
 	 */
-	public static void printCoins(List<Coin> coins) {
-		System.out.println(coins);
+	public static void printCoins(List<Valuable> values) {
+		System.out.println(values);
 	}
 	
 
