@@ -40,8 +40,7 @@ public class Purse {
     }
 
     /**
-     * Count and return the number of moneys in the purse.
-     * This is the number of moneys, not their value.
+     * Count and return the number of items in the purse.
      * @return the number of moneys in the purse
      */
     public int count() {
