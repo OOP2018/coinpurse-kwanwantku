@@ -23,11 +23,14 @@ public class MoneyUtil {
 		values.add(coin);
 		values.add(coin2);
 		values.add(coin3);
+		values.add(banknote1);
+		values.add(banknote2);
 		values.add(new Coin(5, "Rupee"));
 		System.out.println(coin3.equals(new Coin(1, "Baht")));
 		System.out.println(banknote1.equals(banknote2));
 		System.out.println(banknote1.compareTo(coin3));
 		System.out.println(banknote2.compareTo(coin3));
+		System.out.println(banknote2.compareTo(new Coin(1000, "Rupee")));
 		printCoins(values);
 		sortCoins(values);
 		printCoins(values);

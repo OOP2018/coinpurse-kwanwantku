@@ -55,11 +55,10 @@ public class Money implements Valuable{
      */
 	@Override
 	public int compareTo(Valuable o) {
-		if(this.getCurrency().compareToIgnoreCase(o.getCurrency()) == 0) {
-			return (this.getValue()>o.getValue()) ? 1: (this.getValue()<o.getValue()) ? -1:0;
-		}
-		
-		return this.getCurrency().compareToIgnoreCase(o.getCurrency());
+		int comp = this.getCurrency().compareToIgnoreCase(o.getCurrency());
+		if (comp != 0) return comp;
+		return Double.compare(this.getValue(), o.getValue());
+
 	}
 
 
