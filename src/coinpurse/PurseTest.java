@@ -35,12 +35,12 @@ public class PurseTest {
     }
     
     /** Make a coin with the default currency. To save typing "new Coin(...)" */
-    private Coin makeCoin(double value) {
+    private Money makeCoin(double value) {
 		return new Coin(value,CURRENCY);
 	}
     
     /** Make a banknote with the default currency. To save typing "new Banknote(...)" */
-    private BankNote makeBankNote(double value) {
+    private Money makeBankNote(double value) {
     	return new BankNote(value,CURRENCY);
     }
 
@@ -61,11 +61,11 @@ public class PurseTest {
     public void testInsert()
     {
         Purse purse = new Purse(5);
-        Coin coin1 = makeCoin(5);
-        Coin coin2 = makeCoin(10);
-        Coin coin3 = makeCoin(1);
-        BankNote banknote1 = makeBankNote(100);
-    	BankNote banknote2 = makeBankNote(20);
+        Money coin1 = makeCoin(5);
+        Money coin2 = makeCoin(10);
+        Money coin3 = makeCoin(1);
+        Money banknote1 = makeBankNote(100);
+    	Money banknote2 = makeBankNote(20);
         assertTrue( purse.insert(coin1));
         assertTrue( purse.insert(coin3));
         assertTrue( purse.insert(coin2));
@@ -82,7 +82,7 @@ public class PurseTest {
     public void testInsertNoValue()
     {
         Purse purse = new Purse(3);
-        Coin fakeCoin = new Coin(0, CURRENCY);
+        Money fakeCoin = new Coin(0, CURRENCY);
         assertFalse( purse.insert(fakeCoin) );
     }
 
@@ -115,8 +115,8 @@ public class PurseTest {
 		int capacity = 8;
 		double value = 10.0;
 		Purse purse = new Purse(capacity);
-		Coin coin = new Coin(value, "THB");
-		BankNote banknote = new BankNote(value,"Dollar");
+		Money coin = new Coin(value, "THB");
+		Money banknote = new BankNote(value,"Dollar");
 		assertTrue( purse.insert(coin) );
 		assertTrue( purse.insert(coin) ); // should be allowed
 		assertTrue( purse.insert(coin) ); // should be allowed
@@ -135,7 +135,7 @@ public class PurseTest {
 		double [] values = {1, 20, 0.5, 10}; // values of coins we will insert
 		
 		for(double value : values) {
-			Coin coin = makeCoin(value);
+			Money coin = makeCoin(value);
 			assertTrue(purse.insert(coin));
 			assertEquals(value,  purse.getBalance(), TOL);
 			Valuable [] result = purse.withdraw(value);
@@ -151,9 +151,9 @@ public class PurseTest {
 	@Test(timeout=1000)
 	public void testMultiWithdraw() {
 		Purse purse = new Purse(10);
-		Coin[] coins = { makeCoin(5.0), makeCoin(10.0), makeCoin(1.0), makeCoin(5.0) };
+		Money[] coins = { makeCoin(5.0), makeCoin(10.0), makeCoin(1.0), makeCoin(5.0) };
 		// insert them all
-		for(Coin coin: coins) assertTrue( purse.insert(coin) );
+		for(Money coin: coins) assertTrue( purse.insert(coin) );
 		
 		double amount1 = coins[1].getValue() + coins[3].getValue();
 		double amount2 = coins[0].getValue() + coins[2].getValue();

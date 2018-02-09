@@ -15,13 +15,19 @@ public class MoneyUtil {
 	/*Test coin and purse */
 	public static void main(String [] args) {
 		List<Valuable> values = new ArrayList<Valuable>();
-		Coin coin = new Coin(5,"Baht");
-		Coin coin2 = new Coin(10,"Baht");
-		Coin coin3 = new Coin(1, "Baht");
+		Money coin = new Coin(5,"Baht");
+		Money coin2 = new Coin(10,"Baht");
+		Money coin3 = new Coin(1, "Baht");
+		BankNote banknote1 = new BankNote(20, "Baht");
+		BankNote banknote2 = new BankNote(100, "Baht");
 		values.add(coin);
 		values.add(coin2);
 		values.add(coin3);
 		values.add(new Coin(5, "Rupee"));
+		System.out.println(coin3.equals(new Coin(1, "Baht")));
+		System.out.println(banknote1.equals(banknote2));
+		System.out.println(banknote1.compareTo(coin3));
+		System.out.println(banknote2.compareTo(coin3));
 		printCoins(values);
 		sortCoins(values);
 		printCoins(values);
