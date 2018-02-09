@@ -48,17 +48,18 @@ public class Money implements Valuable{
 		return this.getCurrency().equalsIgnoreCase(money.getCurrency()) && (this.getValue() == money.getValue());
 	}
 
-	/**
-	 * Order Moneys value so that the money with smaller value come first.
-	 * @param money is money that want to compare
-	 * @return +1 if this money is more than other money.
-	 * 		   -1 if this money is less than other money.
-	 * 			0 if this money is equal other money.
-	 */
-	public int compareTo(Valuable valueable) {
-		if(this.value > valueable.getValue()) return +1;
-		if(this.value < valueable.getValue()) return -1;
-		return 0;
+	 /**
+     * Compare two moneys that implement Valuable.
+     * First compare them by currency, so items with same currency are grouped together
+     * If both two moneys have the same currency, then order by value.
+     */
+	@Override
+	public int compareTo(Valuable o) {
+		if(this.getCurrency().compareToIgnoreCase(o.getCurrency()) == 0) {
+			return (this.getValue()>o.getValue()) ? 1: (this.getValue()<o.getValue()) ? -1:0;
+		}
+		
+		return this.getCurrency().compareToIgnoreCase(o.getCurrency());
 	}
 
 

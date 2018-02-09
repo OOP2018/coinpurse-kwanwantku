@@ -17,12 +17,7 @@ public class ValueComparator implements Comparator<Valuable> {
 	@Override
 	public int compare(Valuable o1, Valuable o2) {
 		if(o1.getCurrency().compareToIgnoreCase(o2.getCurrency()) == 0) {
-			if(o1.getValue()>o2.getValue()) 
-				return 1;
-			else if(o1.getValue()<o2.getValue())
-				return -1;
-			else 
-				return 0;
+			return (o1.getValue()>o2.getValue()) ? 1: (o1.getValue()<o2.getValue()) ? -1:0;
 		}
 		
 		return o1.getCurrency().compareToIgnoreCase(o2.getCurrency());
