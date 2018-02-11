@@ -103,6 +103,7 @@ public class Purse {
      *  Withdraw the requested amount of money.
      *  Return an array of Moneys withdrawn from purse,
      *  or return null if cannot withdraw the amount requested.
+     *  Withdraw the amount using the default currency ("Baht").
      *  @param amount is the amount to withdraw
      *  @return array of Money objects for money withdrawn, 
 	 *    or null if cannot withdraw requested amount.
@@ -129,6 +130,7 @@ public class Purse {
     		return null;
     	
     	List<Valuable> templist = new ArrayList<Valuable>();
+    	
     	Collections.sort(money,compare);
 		Collections.reverse(money);
 		int i = 0;
@@ -138,7 +140,7 @@ public class Purse {
     	// Your code might use some other variable for the remaining amount to withdraw.
 		while(amount>0) {
 			if(i<money.size()) {
-				if(money.get(i).getValue() <= amount) {
+				if(money.get(i).getValue() <= amount && money.get(i).getCurrency().equals("Baht")) {
 					amount -= money.get(i).getValue();
     				templist.add(money.get(i));
     				money.remove(i);
@@ -162,6 +164,47 @@ public class Purse {
 		templist.toArray(array);
         return array; 
 	}
+    
+    public Valuable[] withdraw(Valuable amount) {
+    	
+    	List<Valuable> templist = new ArrayList<Valuable>();
+    	
+    	if(this.getBalance() < amount.getValue())
+    		return null;
+    	
+    	Collections.sort(money,compare);
+    	Collections.reverse(money);
+    	
+    	double amountForWithdraw = amount.getValue();
+    	
+    	for(Valuable v : money) {
+    		if(v.getCurrency().equals(amount.getCurrency())) {
+    			if(v.getValue() <= amountForWithdraw) {
+    				amountForWithdraw -= v.getValue();
+    				templist.add(v);
+    			}
+    			else {
+    				continue;
+    			}	
+    		}
+    		
+    		if(amountForWithdraw <= 0)
+    			break;
+    		
+    	}
+
+
+    	if(amountForWithdraw != 0)
+    		 return null;
+
+    	for(Valuable c1: templist) {
+    		 money.remove(c1);
+    	}
+    
+    	Valuable [] array = new Valuable[templist.size()];
+    	templist.toArray(array);
+        return array; 
+    }
   
     /** 
      * toString returns a string description of the purse contents.

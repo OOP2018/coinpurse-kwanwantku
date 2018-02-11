@@ -18,14 +18,23 @@ public class MoneyUtil {
 		Money coin = new Coin(5,"Baht");
 		Money coin2 = new Coin(10,"Baht");
 		Money coin3 = new Coin(1, "Baht");
+		Money coin4 = new Coin(0.00001, "BTC");
 		BankNote banknote1 = new BankNote(20, "Baht");
 		BankNote banknote2 = new BankNote(100, "Baht");
+		Purse purse = new Purse(10);
+		purse.insert(banknote2);
+		purse.insert(coin3);
+		purse.insert(coin4);
+		purse.withdraw(coin4);
+		purse.withdraw(coin3);
+		System.out.println(purse.toString());
 		values.add(coin);
 		values.add(coin2);
 		values.add(coin3);
 		values.add(banknote1);
 		values.add(banknote2);
 		values.add(new Coin(5, "Rupee"));
+		
 		System.out.println(coin3.equals(new Coin(1, "Baht")));
 		System.out.println(banknote1.equals(banknote2));
 		System.out.println(banknote1.compareTo(coin3));
