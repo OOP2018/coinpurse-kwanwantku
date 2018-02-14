@@ -3,7 +3,7 @@ package coinpurse;
 import java.util.Comparator;
 /**
  * Compare money by check currency first and check value.
- * @author pranger54
+ * @author Kwanwan Tantichartkul
  * @version 1.0
  * @since 27.01.2018
  */
