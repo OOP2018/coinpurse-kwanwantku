@@ -14,8 +14,8 @@ public interface Valuable extends Comparable<Valuable>{
      public double getValue();
      
  	/**
- 	 * The currency of each coin
- 	 * @return currency of coin
+ 	 * The currency of each valuable
+ 	 * @return currency of valuable
  	 */
  	public String getCurrency();
 

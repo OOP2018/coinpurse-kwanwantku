@@ -165,6 +165,15 @@ public class Purse {
         return array; 
 	}
     
+    /**  
+     *  Withdraw the requested amount of any kinds of money.
+     *  Return an array of Moneys withdrawn from purse,
+     *  or return null if cannot withdraw the amount requested.
+     *  Withdraw the amount for every currency.
+     *  @param amount is the amount to withdraw
+     *  @return array of Money objects for money withdrawn, 
+	 *    or null if cannot withdraw requested amount.
+     */
     public Valuable[] withdraw(Valuable amount) {
     	
     	List<Valuable> templist = new ArrayList<Valuable>();
