@@ -10,7 +10,7 @@ package coinpurse;
  */
 public abstract class MoneyFactory {
 	/**The factory that create money*/
-	private static MoneyFactory factory;
+	private static MoneyFactory instance;
 	
 	/**
 	 * To get the instance of money. 
@@ -20,7 +20,7 @@ public abstract class MoneyFactory {
 	 * 		   Another Exception that can make the error to creating money.
 	 */
 	public static MoneyFactory getInstance() {
-		return factory;
+		return instance;
 	}
 	
 	/**
@@ -40,17 +40,17 @@ public abstract class MoneyFactory {
     	try {
     		return createMoney(Double.parseDouble(value));
     	}catch(Exception e) {
-    		throw new IllegalArgumentException();
+    		throw new IllegalArgumentException(e.getMessage());
     	}
        // parse the String as a double and call the other createMoney method
    }
     
     /**
-     * The set factory when factory doesn't create money.
-     * @param factory is the factory that want to create new one.
+     * It's setting money factory for using money.
+     * @param factory is import factory that create money
      */
     public static void setFactory(MoneyFactory factory) {
-		MoneyFactory.factory = factory;
+		MoneyFactory.instance = factory;
 	}
 
 }

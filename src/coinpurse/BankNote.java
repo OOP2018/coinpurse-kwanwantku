@@ -17,15 +17,28 @@ public class BankNote extends Money {
 	/**
 	 * Initialize a new banknote.
 	 * Banknote have value and currency.
-	 * It also has serial number for each banknote.
+	 * It also has to create new serial number for each banknote.
 	 * @param value is value of each banknote.
 	 * @param currency is type of banknote reference from each country.
 	 */
 	public BankNote(double value, String currency) {
 		super(value,currency);
 		this.serialNumber = nextSerialNumber++;
-		
 	}
+	
+	/**
+	 * Initialize a new banknote.
+	 * Banknote have value and currency.
+	 * It also has own serial number for each banknote already.
+	 * @param value is value of each banknote.
+	 * @param currency is type of banknote reference from each country.
+	 * @param serialNumber is the serial of the Banknote.
+	 */
+	public BankNote(double value,String currency,long serialNumber) {
+		super(value, currency);
+		this.serialNumber = serialNumber;
+	}
+
 	
 	/**
 	 * The serial number for banknote
