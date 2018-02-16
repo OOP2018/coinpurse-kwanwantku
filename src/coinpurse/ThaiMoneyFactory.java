@@ -8,9 +8,9 @@ public class ThaiMoneyFactory extends MoneyFactory{
 	@Override
 	public Valuable createMoney(double value) {
 		if(value == 0.25) 
-			return new Coin(0.25,"Baht");
+			return new Coin(25,"Stang");
 		else if (value == 0.5) 
-			return new Coin(0.5,"Baht");
+			return new Coin(50,"Stang");
 		else if(value == 1) 
 			return new Coin(1,"Baht");
 		else if (value == 2) 

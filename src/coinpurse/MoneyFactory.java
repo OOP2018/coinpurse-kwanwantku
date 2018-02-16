@@ -1,5 +1,7 @@
 package coinpurse;
 
+import java.util.ResourceBundle;
+
 /**
  * The factory can create money to using with purse.
  * Their can control to create each currency.
@@ -10,7 +12,7 @@ package coinpurse;
  */
 public abstract class MoneyFactory {
 	/**The factory that create money*/
-	private static MoneyFactory instance;
+	private static MoneyFactory instance = null;
 	
 	/**
 	 * To get the instance of money. 
@@ -20,6 +22,32 @@ public abstract class MoneyFactory {
 	 * 		   Another Exception that can make the error to creating money.
 	 */
 	public static MoneyFactory getInstance() {
+//		if (instance == null) 
+//			instance = new ThaiMoneyFactory();
+//        return instance;
+		
+		//create a ResourceBundle from file "purse.properties" on the classpath
+		//the ".properties" extension is automatically append to the name
+		ResourceBundle bundle = ResourceBundle.getBundle("purse");
+		
+		//get value of "moneyfactory" property
+		String factoryclass = bundle.getString("moneyfactory");
+		//for testing, try this:
+		System.out.println("Factory class name is "+factoryclass);
+		try {
+			instance = (MoneyFactory)Class.forName(factoryclass).newInstance();
+		}
+		catch(ClassCastException cce) {
+			//the object could not be cast to type MoneyFactory
+			System.out.println(factoryclass+" is not type MoneyFactory.");
+		}
+		catch(Exception ex) {
+			//any another exception means we could not create an object
+			System.out.println("Error creating MoneyFactory "+ ex.getMessage());
+		}
+		//if no factory the quit
+		if(instance == null)
+			System.exit(1);
 		return instance;
 	}
 	
