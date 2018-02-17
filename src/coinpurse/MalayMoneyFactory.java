@@ -1,10 +1,22 @@
 package coinpurse;
 
+/**
+ * The Malay Factory is create Malaysia Money.
+ * @author Kwanwan Tantichartkul
+ * @version 1.0
+ * @since 2018.02.16
+ */
 public class MalayMoneyFactory extends MoneyFactory{
 	
 	/**next serial number for generate banknote*/
 	private static long nextSerialNumber = 1000000;
 	
+	/*
+	 * Create Malaysia money with currency and value.
+	 * The BankNote can generate serial number for each BankNote.
+	 * @param value is the value of money.
+	 * @throw IllegalArgumentException for creating wrong money values.
+	 */
 	@Override
 	public Valuable createMoney(double value) throws IllegalArgumentException {
 		if(value == 0.05) 

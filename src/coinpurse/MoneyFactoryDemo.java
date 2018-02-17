@@ -1,9 +1,17 @@
 package coinpurse;
-
+/**
+ * The moneyfactory test methods.
+ * For checking Factory is Singleton.
+ * It also check about value, currency and create money from the factory.
+ * @author Kwanwan Tantichartkul
+ * @version 1.0
+ * @since 2018.02.17
+ */
 public class MoneyFactoryDemo {
-	
+	/*
+	 * The main class for MoneyFactory
+	 */
 	public static void main(String [] args) {
-		
 		
 		System.out.println("Thai Money Factory");
 		testCreateThaiMoney();
@@ -18,10 +26,18 @@ public class MoneyFactoryDemo {
 		testAspectResult();
 	}
 	
+	/*
+	 * The control for changing factory.
+	 * @param factory is the factory that you want to change it.
+	 */
     public static void setFactory(MoneyFactory factory) {
 		MoneyFactory.setFactory(factory);
 	}
-
+    
+    /**
+     * Testing create Thailand money.
+     * It can get values, currency and information.
+     */
 	public static void testCreateThaiMoney() {
 		setFactory(new ThaiMoneyFactory());
 		MoneyFactory factory1 = MoneyFactory.getInstance();
@@ -43,6 +59,10 @@ public class MoneyFactoryDemo {
 		}
 	}
 	
+    /**
+     * Testing create Malaysia money.
+     * It can get values, currency and information.
+     */
 	public static void testCreateMalayMoney() {
 		setFactory(new MalayMoneyFactory());
 		MoneyFactory factory3 = MoneyFactory.getInstance();
@@ -64,6 +84,9 @@ public class MoneyFactoryDemo {
 		}
 	}
 	
+    /**
+     * Testing create invalid money can't create.
+     */
 	public static void testCantCreateMoney() {
 		setFactory(new MalayMoneyFactory());
 		String[] values = {"0.8","0.7","1.2","80","300"};
@@ -85,6 +108,10 @@ public class MoneyFactoryDemo {
 		}
 	}
 	
+    /**
+     * Testing aspect values for create money.
+     * There are test equals and compareTo.
+     */
 	public static void testAspectResult() {
 		setFactory(new ThaiMoneyFactory());
 		MoneyFactory factoryequal = MoneyFactory.getInstance();
