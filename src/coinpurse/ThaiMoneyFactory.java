@@ -18,7 +18,7 @@ public class ThaiMoneyFactory extends MoneyFactory{
 	 * @throw IllegalArgumentException for creating wrong money values.
 	 */
 	@Override
-	public Valuable createMoney(double value) {
+	public Valuable createMoney(double value) throws IllegalArgumentException{
 		if(value == 0.25) 
 			return new Coin(25,"Stang");
 		else if (value == 0.5) 
