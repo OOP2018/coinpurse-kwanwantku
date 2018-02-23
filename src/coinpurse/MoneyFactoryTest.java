@@ -17,7 +17,8 @@ public class MoneyFactoryTest {
 	private static final String[] thaiMoney= {"0.5","1","5", "20", "50", "100", "1000"};
 	/** set of Malay money String*/
 	private static final String[] malayMoney= {"0.05", "0.2","1", "2", "10", "20", "100"};
-
+	/**next serial number for generate banknote*/
+	private static long nextSerialNumber = 1000000;
     /**
      * Sets up the test fixture.
      * Called before every test case method.
@@ -68,11 +69,11 @@ public class MoneyFactoryTest {
     	Valuable coin3 = new Coin(1,"Baht");
     	Valuable coin4 = new Coin(5,"Baht");
     	Valuable coin5 = new Coin(10,"Baht");
-    	Valuable banknote1 = new BankNote(20,"Baht");
-    	Valuable banknote2 = new BankNote(50,"Baht");
-    	Valuable banknote3 = new BankNote(100,"Baht");
-    	Valuable banknote4 = new BankNote(500,"Baht");
-    	Valuable banknote5 = new BankNote(1000,"Baht");
+    	Valuable banknote1 = new BankNote(20,"Baht",nextSerialNumber++);
+    	Valuable banknote2 = new BankNote(50,"Baht",nextSerialNumber++);
+    	Valuable banknote3 = new BankNote(100,"Baht",nextSerialNumber++);
+    	Valuable banknote4 = new BankNote(500,"Baht", nextSerialNumber++);
+    	Valuable banknote5 = new BankNote(1000,"Baht", nextSerialNumber++);
     	assertEquals(coin1,factorytest.createMoney(0.25));
     	assertEquals(coin2,factorytest.createMoney(0.5));
     	assertEquals(coin3,factorytest.createMoney(1));
