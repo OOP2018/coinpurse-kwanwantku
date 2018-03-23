@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import coinpurse.stratergy.GreedyWithdraw;
+import coinpurse.stratergy.WithdrawStratergy;
+
 // You will use Collections.sort() to sort the coins
 
 /**
@@ -28,6 +31,9 @@ public class Purse {
 
 	/** The comparator for moneys **/
 	private final Comparator<Valuable> compare = new ValueComparator();
+	
+	/**Strategy for withdraw*/
+	WithdrawStratergy withdrawstrategy = new GreedyWithdraw();
 
 	/**
 	 * Create a purse with a specified capacity.
@@ -129,37 +135,37 @@ public class Purse {
 	 */
 	public Valuable[] withdraw(Valuable amount) {
 
-		List<Valuable> templist = new ArrayList<Valuable>();
-		
-		double amountForWithdraw = amount.getValue();
-		
-		if (this.getBalance() < amount.getValue() || amount.getValue() <= 0)
-			return null;
+		List<Valuable> templist = withdrawstrategy.withdraw(amount, money);
 
-		Collections.sort(money, compare);
-		Collections.reverse(money);
+//		double amountForWithdraw = amount.getValue();
+//		
+//		if (this.getBalance() < amountForWithdraw || amountForWithdraw <= 0)
+//			return null;
 
-		String currency = amount.getCurrency();
-		if(currency == null) currency = "";
-
-		for (Valuable v : money) {
-			if (currency.equals(v.getCurrency())) {
-				if (v.getValue() <= amountForWithdraw) {
-					amountForWithdraw -= v.getValue();
-					templist.add(v);
-				} 
-				if (amountForWithdraw <= 0) break;
-			}
-
-		}
-		
-		//success for withdraw
-		if (amountForWithdraw != 0)
-			return null; //failed
-
-		for (Valuable c1 : templist) {
-			money.remove(c1);
-		}
+//		Collections.sort(money, compare);
+//		Collections.reverse(money);
+//
+//		String currency = amount.getCurrency();
+//		if(currency == null) currency = "";
+//
+//		for (Valuable v : money) {
+//			if (currency.equals(v.getCurrency())) {
+//				if (v.getValue() <= amountForWithdraw) {
+//					amountForWithdraw -= v.getValue();
+//					templist.add(v);
+//				} 
+//				if (amountForWithdraw <= 0) break;
+//			}
+//
+//		}
+//		
+//		//success for withdraw
+//		if (amountForWithdraw != 0)
+//			return null; //failed
+//
+//		for (Valuable c1 : templist) {
+//			money.remove(c1);
+//		}
 
 		Valuable[] array = new Valuable[templist.size()];
 		templist.toArray(array);
