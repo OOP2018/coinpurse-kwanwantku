@@ -4,7 +4,7 @@ import org.junit.*;
 
 public class WithdrawTest {
 
-	private WithdrawStratergy stratergy;
+	private WithdrawStrategy stratergy;
 	
 	@Before
 	public void setUp() {

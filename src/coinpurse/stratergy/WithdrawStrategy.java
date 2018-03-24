@@ -9,7 +9,7 @@ import coinpurse.Valuable;
  * @version 1.0
  * @since 2018.03.23
  */
-public interface WithdrawStratergy {
+public interface WithdrawStrategy {
 	
 	/**
 	 * Find and return items from a collection whose total value equals

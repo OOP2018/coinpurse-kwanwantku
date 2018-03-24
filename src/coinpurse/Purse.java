@@ -7,7 +7,7 @@ import java.util.List;
 
 import coinpurse.stratergy.GreedyWithdraw;
 import coinpurse.stratergy.RecursiveWithdraw;
-import coinpurse.stratergy.WithdrawStratergy;
+import coinpurse.stratergy.WithdrawStrategy;
 
 // You will use Collections.sort() to sort the coins
 
@@ -33,8 +33,8 @@ public class Purse {
 	/** The comparator for moneys **/
 	private final Comparator<Valuable> compare = new ValueComparator();
 	
-	/**Strategy for withdraw*/
-	WithdrawStratergy withdrawstrategy = new RecursiveWithdraw();
+	/**Strategy for withdraw you can use recursive or withdraw by create new strategy*/
+	WithdrawStrategy withdrawstrategy = new RecursiveWithdraw();
 
 	/**
 	 * Create a purse with a specified capacity.
@@ -128,6 +128,7 @@ public class Purse {
 	 * Withdraw the requested amount of any kinds of money. Return an array of
 	 * Moneys withdrawn from purse, or return null if cannot withdraw the amount
 	 * requested. Withdraw the amount for every currency.
+	 * Now, It's applied for strategy to withdraw a money.
 	 * 
 	 * @param amount
 	 *            is the amount to withdraw
@@ -136,15 +137,15 @@ public class Purse {
 	 */
 	public Valuable[] withdraw(Valuable amount) {
 
-		List<Valuable> templist = withdrawstrategy.withdraw(amount, money);
-
 		double amountForWithdraw = amount.getValue();
 		
 		if (this.getBalance() < amountForWithdraw || amountForWithdraw <= 0)
 			return null;
-
-//		Collections.sort(money, compare);
-//		Collections.reverse(money);
+		
+		Collections.sort(money, compare);
+		Collections.reverse(money);
+		
+		List<Valuable> templist = withdrawstrategy.withdraw(amount, money);
 //
 //		String currency = amount.getCurrency();
 //		if(currency == null) currency = "";
