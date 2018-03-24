@@ -6,13 +6,20 @@ import java.util.Comparator;
 import java.util.List;
 
 import coinpurse.Valuable;
-
+import coinpurse.ValueComparator;
+/**
+ * 
+ * @author pranger54
+ *
+ */
 public class GreedyWithdraw implements WithdrawStratergy{
+	/** The comparator for moneys **/
+	private final Comparator<Valuable> compare = new ValueComparator();
 	
 	@Override
 	public List<Valuable> withdraw(Valuable amount, List<Valuable> money) {
 		List<Valuable> templist = new ArrayList<Valuable>();
-		Collections.sort(money);
+		Collections.sort(money, compare);
 		Collections.reverse(money);
 		double amountWithdraw = amount.getValue();
 		String currencyWithdraw = amount.getCurrency();
@@ -32,12 +39,11 @@ public class GreedyWithdraw implements WithdrawStratergy{
 					continue;
 			}
 			
-			if (colamount == amountWithdraw) {
-				for (int k = 0; k < templist.size(); k++)
-					money.remove(templist.get(k));
-				return templist;
-			}
 		}
+		
+		if (amountWithdraw != 0) 
+			return templist;
+			
 		return null;
 
 	}
